@@ -27,12 +27,12 @@ header {
   position: fixed;
   z-index: 9999;
   width: 100%;
-  backdrop-filter: blur(10px);
   transition: background 0.25s ease-in-out;
 }
 
 header.white {
-  background: #fffc;
+  background: #fff;
+  box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.502);
 }
 
 .logo {
@@ -228,7 +228,7 @@ nav a.white {
 .background-scroll-detector {
   position: absolute;
   width: 100%;
-  top: 35%;
+  bottom: 0;
 }
 
 /* Arrow styles */
