@@ -72,6 +72,12 @@ header.white {
   transition: all 0.5s ease-in-out;
 }
 
+.nav-toggle-label.white span,
+.nav-toggle-label.white span::before,
+.nav-toggle-label.white span::after {
+  background: black;
+}
+
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
   content: "";
@@ -112,7 +118,13 @@ nav {
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-radius: 0 0 1rem 1rem;
+}
+
+nav.white {
+  background-color: white;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.502);
 }
 
 nav ul {
@@ -169,6 +181,11 @@ nav a.white {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+
+  nav.white {
+    background-color: unset;
+    box-shadow: unset;
   }
 
   nav ul {
