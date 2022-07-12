@@ -18,19 +18,36 @@ body {
 }
 
 .content {
-  height: 200vh;
-  background-color: #333;
   margin: 0;
-  padding: 0;
+  padding: 10px;
+  background-color: white;
+  font-weight: normal;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Navigation Styles */
 header {
-  background: var(--background);
   text-align: center;
   position: fixed;
   z-index: 9999;
   width: 100%;
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease-in-out;
+}
+
+header.white {
+  background: #fffc;
+}
+
+.logo {
+  opacity: 0;
+  transform: translate(0, -100%);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.logo.active {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 .nav-toggle {
@@ -96,7 +113,6 @@ nav {
   text-align: left;
   top: 100%;
   left: 0;
-  background: var(--background);
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
@@ -123,8 +139,7 @@ nav a {
   transition: opacity 0.15s ease-in-out, color 0.25s ease-in-out;
 }
 
-nav a:hover,
-nav a:focus {
+nav a.white {
   color: black;
 }
 
@@ -178,7 +193,7 @@ nav a:focus {
     content: "";
     display: block;
     height: 5px;
-    background: black;
+    background: white;
     position: absolute;
     top: -0.5em;
     left: 0;
@@ -188,7 +203,84 @@ nav a:focus {
     transition: transform 0.25s ease-in-out;
   }
 
+  nav a.white::before {
+    background: black;
+  }
+
   nav a:hover::before {
     transform: scale(1, 1);
+  }
+}
+
+/* Background */
+.background {
+  background: url("/assets/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.logo-scroll-detector {
+  position: absolute;
+  width: 100%;
+  top: 65%;
+}
+
+.background-scroll-detector {
+  position: absolute;
+  width: 100%;
+  top: 35%;
+}
+
+/* Arrow styles */
+.arrow {
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 7px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.scroll-p {
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  animation: scroll-p 1.2s ease-in-out infinite;
+}
+
+@keyframes scroll-p {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(50%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
   }
 }
