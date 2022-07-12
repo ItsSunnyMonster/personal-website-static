@@ -22,29 +22,45 @@ const logoObserver = new IntersectionObserver((entries, observer) => {
   });
 }, {});
 
-var options = { rootMargin: "-90px 0px 0px 0px" };
-
-const backgroundObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    if (entry.target == backgroundScroll) {
-      if (!entry.isIntersecting) {
-        header.classList.add("white");
-        links.forEach((link) => {
-          link.classList.add("white");
-        });
-        hamMenu.classList.add("white");
-        nav.classList.add("white");
-      } else {
-        header.classList.remove("white");
-        links.forEach((link) => {
-          link.classList.remove("white");
-        });
-        hamMenu.classList.remove("white");
-        nav.classList.remove("white");
+const backgroundObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.target == backgroundScroll) {
+        if (!entry.isIntersecting) {
+          header.classList.add("white");
+          links.forEach((link) => {
+            link.classList.add("white");
+          });
+          hamMenu.classList.add("white");
+          nav.classList.add("white");
+        } else {
+          header.classList.remove("white");
+          links.forEach((link) => {
+            link.classList.remove("white");
+          });
+          hamMenu.classList.remove("white");
+          nav.classList.remove("white");
+        }
       }
-    }
-  });
-}, options);
+    });
+  },
+  { rootMargin: "-90px 0px 0px 0px" }
+);
+
+const navSizeObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.target == backgroundScroll) {
+        if (!entry.isIntersecting) {
+          logo.classList.add("small");
+        } else {
+          logo.classList.remove("small");
+        }
+      }
+    });
+  },
+  { rootMArgin: "-50px 0px 0px 0px" }
+);
 
 document.addEventListener("scroll", () => {
   toggle.checked = false;
@@ -52,3 +68,4 @@ document.addEventListener("scroll", () => {
 
 logoObserver.observe(logoScroll);
 backgroundObserver.observe(backgroundScroll);
+navSizeObserver.observe(backgroundScroll);
